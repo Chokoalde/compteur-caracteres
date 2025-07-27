@@ -7,22 +7,28 @@
   <meta name="description" content="Comptez instantanément les caractères, mots, lignes et plus. Outil gratuit, rapide et 100% privé. Idéal pour rédacteurs, étudiants, développeurs et SEO." />
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
-    // Détection du mode sombre
-    document.documentElement.classList.toggle(
-      "dark",
+    // Gestion du thème : détection + persistance
+    if (
       localStorage.theme === "dark" ||
-        (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches),
-    );
+      (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)
+    ) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
 
     function toggleTheme() {
-      if (document.documentElement.classList.contains("dark")) {
-        document.documentElement.classList.remove("dark");
-        localStorage.theme = "light";
-      } else {
-        document.documentElement.classList.add("dark");
-        localStorage.theme = "dark";
-      }
+      const html = document.documentElement;
+      const isDark = html.classList.contains("dark");
+      html.classList.toggle("dark", !isDark);
+      localStorage.theme = isDark ? "light" : "dark";
+      document.getElementById("themeIcon").innerText = isDark ? "🌙" : "☀️";
     }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      const isDark = document.documentElement.classList.contains("dark");
+      document.getElementById("themeIcon").innerText = isDark ? "☀️" : "🌙";
+    });
 
     function updateCount() {
       const text = document.getElementById("inputText").value;
@@ -51,7 +57,6 @@
     <div class="bg-white dark:bg-gray-800 shadow-xl rounded-2xl p-8">
       <div class="flex justify-between items-center mb-4">
         <h1 class="text-2xl font-bold">📝 Compteur de texte</h1>
-        <button onclick="toggleTheme()" class="text-sm bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white px-3 py-1 rounded-lg">Switch Mode</button>
       </div>
 
       <textarea id="inputText" class="w-full h-40 p-4 border rounded-xl resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white" placeholder="Tapez ou collez votre texte ici..." oninput="updateCount()"></textarea>
@@ -70,7 +75,7 @@
   </div>
 
   <section class="mt-12 max-w-3xl mx-auto bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md text-base leading-relaxed">
-    <h2 class="text-xl font-semibold">zPourquoi utiliser ce compteur de texte en ligne ?</h2>
+    <h2 class="text-xl font-semibold">Pourquoi utiliser ce compteur de texte en ligne ?</h2>
     <p class="mt-2">Ce compteur de texte vous permet de connaître instantanément le nombre de caractères, mots, lignes, et autres statistiques utiles pour la rédaction de contenus professionnels ou académiques. Que vous soyez étudiant, rédacteur web, traducteur, développeur ou journaliste, cet outil vous fait gagner du temps en vous fournissant des données essentielles en un clin d'œil.</p>
 
     <p class="mt-4">Parfait pour optimiser :</p>
@@ -105,6 +110,34 @@
 
     <h3 class="text-lg font-semibold mt-6">Confidentialité & performance</h3>
     <p>L'outil est entièrement gratuit, sans inscription ni publicité. Il respecte votre vie privée en ne stockant aucune information. Aucune connexion internet n'est requise une fois la page chargée… même en mode avion.</p>
+
+    <h3 class="text-xl font-semibold mt-10">Foire Aux Questions (FAQ)</h3>
+    <div class="mt-4 space-y-4">
+      <div>
+        <p class="font-medium">Quelle est la différence entre le comptage avec et sans les espaces ?</p>
+        <p>Le comptage "avec espaces" inclut chaque caractère que vous tapez, y compris les lettres, les chiffres, la ponctuation et les espaces. Le comptage "sans espaces" exclut ces derniers. Cette distinction est cruciale car certaines plateformes (comme Google pour les balises SEO) comptent les espaces, tandis que d'autres contextes exigent un comptage sans.</p>
+      </div>
+      <div>
+        <p class="font-medium">Votre compteur de mots est-il plus précis que Microsoft Word ?</p>
+        <p>Notre outil utilise un algorithme conçu pour être extrêmement précis et peut différer légèrement de certains logiciels de traitement de texte. Par exemple, nous comptons les mots liés par un trait d'union (ex: "arc-en-ciel") comme un seul mot, ce qui correspond à l'usage courant en français et aux attentes de la plupart des plateformes en ligne. La précision est notre priorité.</p>
+      </div>
+      <div>
+        <p class="font-medium">Ce service est-il vraiment gratuit ?</p>
+        <p>Oui, à 100%. Notre compteur de caractères est entièrement gratuit, sans aucune fonctionnalité cachée ni abonnement requis. Notre objectif est de fournir le meilleur outil possible, accessible à tous.</p>
+      </div>
+      <div>
+        <p class="font-medium">Dois-je m'inscrire pour utiliser le compteur ?</p>
+        <p>Non. Aucune inscription n'est nécessaire. L'outil est accessible directement et de manière illimitée. Nous croyons en un accès simple et immédiat à l'information.</p>
+      </div>
+      <div>
+        <p class="font-medium">Mes textes sont-ils sauvegardés sur vos serveurs ?</p>
+        <p>Absolument pas. Votre vie privée est notre priorité absolue. L'analyse de votre texte se fait directement dans votre navigateur. Aucun texte que vous collez dans notre outil n'est envoyé, stocké ou enregistré sur nos serveurs. Tout ce que vous écrivez reste votre propriété et disparaît dès que vous quittez la page.</p>
+      </div>
+    </div>
   </section>
+
+  <button onclick="toggleTheme()" class="fixed bottom-4 left-4 z-50 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white rounded-full p-3 shadow-lg" title="Changer le thème">
+    <span id="themeIcon">☀️</span>
+  </button>
 </body>
 </html>
