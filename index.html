@@ -7,7 +7,6 @@
   <meta name="description" content="Comptez instantanément les caractères, mots, lignes et plus. Outil gratuit, rapide et 100% privé. Idéal pour rédacteurs, étudiants, développeurs et SEO." />
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
-    // Gestion du thème : détection + persistance
     function updateCount() {
       const text = document.getElementById("inputText").value;
 
@@ -30,14 +29,14 @@
     }
   </script>
 </head>
-<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-100 flex flex-col min-h-screen p-4">
+<body class="bg-gray-100 text-gray-800 flex flex-col min-h-screen p-4">
   <div class="h-screen max-w-xl w-full mx-auto flex-grow flex flex-col justify-center">
-    <div class="bg-white dark:bg-gray-800 shadow-xl rounded-2xl p-8">
+    <div class="bg-white shadow-xl rounded-2xl p-8">
       <div class="flex justify-between items-center mb-4">
         <h1 class="text-2xl font-bold">Compteur de caractères</h1>
       </div>
 
-      <textarea id="inputText" class="w-full h-40 p-4 border rounded-xl resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white" placeholder="Tapez ou collez votre texte ici..." oninput="updateCount()"></textarea>
+      <textarea id="inputText" class="w-full h-40 p-4 border rounded-xl resize-none focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Tapez ou collez votre texte ici..." oninput="updateCount()"></textarea>
 
       <div class="mt-6 space-y-2">
         <p>📌 Caractères (avec espaces) : <span id="charWithSpaces">0</span></p>
@@ -48,11 +47,11 @@
         <p>🏆 Mot le plus long : <span id="longestWord">—</span></p>
       </div>
 
-      <p class="mt-6 text-center text-sm text-gray-500 dark:text-gray-400">Aucun texte n'est stocké. 100% privé.</p>
+      <p class="mt-6 text-center text-sm text-gray-500">Aucun texte n'est stocké. 100% privé.</p>
     </div>
   </div>
 
-  <section class="mt-12 max-w-3xl mx-auto bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md text-base leading-relaxed">
+  <section class="mt-12 max-w-3xl mx-auto bg-white rounded-xl p-6 shadow-md text-base leading-relaxed">
     <h2 class="text-xl font-semibold">Pourquoi utiliser ce compteur de caractères en ligne ?</h2>
     <p class="mt-2">Ce <strong>compteur de caractères</strong> vous permet de connaître instantanément le nombre de caractères, mots, lignes, et autres statistiques utiles pour la rédaction de contenus professionnels ou académiques. Que vous soyez étudiant, rédacteur web, traducteur, développeur ou journaliste, cet outil vous fait gagner du temps en vous fournissant des données essentielles en un clin d'œil.</p>
 
@@ -114,7 +113,7 @@
     </div>
   </section>
 
-    <footer class="mt-16 text-sm text-center text-gray-500 dark:text-gray-400 py-8 border-t border-gray-200 dark:border-gray-700">
+    <footer class="mt-16 text-sm text-center text-gray-500 py-8 border-t border-gray-200">
     <div class="flex flex-col items-center gap-2">
       <p>&copy; 2025 Compteur de caractères en ligne. Tous droits réservés.</p>
       <div class="flex gap-4">
