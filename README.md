@@ -1,1 +1,1 @@
-On test la plateforme !
+On teste la plateforme !
