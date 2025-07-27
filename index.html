@@ -8,28 +8,6 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     // Gestion du thème : détection + persistance
-    if (
-      localStorage.theme === "dark" ||
-      (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)
-    ) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-
-    function toggleTheme() {
-      const html = document.documentElement;
-      const isDark = html.classList.contains("dark");
-      html.classList.toggle("dark", !isDark);
-      localStorage.theme = isDark ? "light" : "dark";
-      document.getElementById("themeIcon").innerText = isDark ? "🌙" : "☀️";
-    }
-
-    window.addEventListener("DOMContentLoaded", () => {
-      const isDark = document.documentElement.classList.contains("dark");
-      document.getElementById("themeIcon").innerText = isDark ? "☀️" : "🌙";
-    });
-
     function updateCount() {
       const text = document.getElementById("inputText").value;
 
@@ -53,7 +31,7 @@
   </script>
 </head>
 <body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-100 flex flex-col min-h-screen p-4">
-  <div class="max-w-xl w-full mx-auto flex-grow flex flex-col justify-center">
+  <div class="h-screen max-w-xl w-full mx-auto flex-grow flex flex-col justify-center">
     <div class="bg-white dark:bg-gray-800 shadow-xl rounded-2xl p-8">
       <div class="flex justify-between items-center mb-4">
         <h1 class="text-2xl font-bold">Compteur de caractères</h1>
