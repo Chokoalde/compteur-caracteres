@@ -1,11 +1,24 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Compteur de caractères</title>
+  <title>Compteur de texte en ligne - Caractères, mots, statistiques</title>
+  <meta name="description" content="Comptez instantanément les caractères, mots, lignes et plus. Outil gratuit, rapide et 100% privé. Idéal pour rédacteurs, étudiants, développeurs et SEO." />
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
+    // Thème clair/sombre basé sur la préférence utilisateur
+    const userPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (userPrefersDark) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+
+    function toggleTheme() {
+      document.documentElement.classList.toggle('dark');
+    }
+
     function updateCount() {
       const text = document.getElementById("inputText").value;
 
@@ -28,69 +41,65 @@
     }
   </script>
 </head>
-<body class="bg-gray-100 flex flex-col min-h-screen p-4">
-    <div class="bg-white shadow-xl rounded-2xl p-8 max-w-xl w-full flex-grow flex flex-col justify-center">
-    <h1 class="text-2xl font-bold text-center mb-6">📝 Compteur de texte</h1>
-    
-    <textarea id="inputText" 
-              class="w-full h-40 p-4 border rounded-xl resize-none focus:outline-none focus:ring-2 focus:ring-blue-500" 
-              placeholder="Tapez ou collez votre texte ici..." 
-              oninput="updateCount()"></textarea>
-    
-    <div class="mt-6 text-gray-700 space-y-2">
-      <p>📌 Caractères (avec espaces) : <span id="charWithSpaces">0</span></p>
-      <p>📌 Caractères (sans espaces) : <span id="charWithoutSpaces">0</span></p>
-      <p>📝 Nombre de mots : <span id="wordCount">0</span></p>
-      <p>📄 Nombre de lignes : <span id="lineCount">0</span></p>
-      <p>📏 Longueur moyenne des mots : <span id="avgWordLength">0</span></p>
-      <p>🏆 Mot le plus long : <span id="longestWord">—</span></p>
-    </div>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-100 flex flex-col min-h-screen p-4">
+  <div class="max-w-xl w-full mx-auto flex-grow flex flex-col justify-center">
+    <div class="bg-white dark:bg-gray-800 shadow-xl rounded-2xl p-8">
+      <div class="flex justify-between items-center mb-4">
+        <h1 class="text-2xl font-bold">📝 Compteur de texte</h1>
+        <button onclick="toggleTheme()" class="text-sm bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white px-3 py-1 rounded-lg">Switch Mode</button>
+      </div>
 
-    <p class="mt-6 text-center text-sm text-gray-400">Aucun texte n'est stocké. 100% privé.</p>
-  </div>
+      <textarea id="inputText" class="w-full h-40 p-4 border rounded-xl resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white" placeholder="Tapez ou collez votre texte ici..." oninput="updateCount()"></textarea>
 
+      <div class="mt-6 space-y-2">
+        <p>📌 Caractères (avec espaces) : <span id="charWithSpaces">0</span></p>
+        <p>📌 Caractères (sans espaces) : <span id="charWithoutSpaces">0</span></p>
+        <p>📝 Nombre de mots : <span id="wordCount">0</span></p>
+        <p>📄 Nombre de lignes : <span id="lineCount">0</span></p>
+        <p>📏 Longueur moyenne des mots : <span id="avgWordLength">0</span></p>
+        <p>🏆 Mot le plus long : <span id="longestWord">—</span></p>
+      </div>
 
-  <!-- fonctionne très bien à ce niveau-là (hero) -->
-
-  <section class="mt-12 bg-white rounded-xl p-6 shadow-md text-gray-800 space-y-6 text-base leading-relaxed max-w-xl w-full mx-auto">
-  <h2 class="text-xl font-semibold text-gray-900">Pourquoi utiliser ce compteur de caractères en ligne ?</h2>
-  <p>Notre outil vous offre un comptage instantané de :</p>
-  <ul class="list-disc list-inside space-y-1">
-    <li>📌 Caractères (avec ou sans espaces)</li>
-    <li>📝 Nombre de mots</li>
-    <li>📄 Nombre de lignes</li>
-    <li>📏 Longueur moyenne des mots</li>
-    <li>🏆 Mot le plus long</li>
-  </ul>
-  <p>Utilisez-le pour ajuster vos <strong>balises title</strong> (≤ 60 caractères), <strong>meta descriptions</strong> (150–155 caractères), publications sur réseaux sociaux (Twitter, LinkedIn, Instagram), dissertations, emails ou fiches produit.</p>
-
-  <h3 class="text-lg font-semibold mt-6">À qui s’adresse cet outil ?</h3>
-  <ul class="list-disc list-inside space-y-1">
-    <li>📚 Étudiants & enseignants</li>
-    <li>✍️ Rédacteurs web, community managers, SEO</li>
-    <li>👨‍💻 Développeurs ou traducteurs</li>
-    <li>📰 Journalistes ou auteurs</li>
-  </ul>
-
-  <h3 class="text-lg font-semibold mt-6">Fonctionnement & vie privée</h3>
-  <p>L’outil fonctionne 100 % dans votre navigateur — <strong>aucune donnée n’est envoyée ni stockée</strong>. Temps de chargement ultra rapide — résultat instantané.</p>
-
-  <h3 class="text-lg font-semibold mt-6">FAQ rapide</h3>
-  <div class="space-y-4">
-    <div>
-      <p class="font-medium">Est-ce gratuit ?</p>
-      <p>Oui, sans inscription ni limite.</p>
-    </div>
-    <div>
-      <p class="font-medium">Mon texte est-il privé ?</p>
-      <p>100 % : il ne quitte jamais votre appareil.</p>
-    </div>
-    <div>
-      <p class="font-medium">Peut-on compter les caractères sans espaces ?</p>
-      <p>Oui, via une mise à jour prochaine de l’outil.</p>
+      <p class="mt-6 text-center text-sm text-gray-500 dark:text-gray-400">Aucun texte n'est stocké. 100% privé.</p>
     </div>
   </div>
-</section>
-  
+
+  <section class="mt-12 max-w-3xl mx-auto bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md text-base leading-relaxed">
+    <h2 class="text-xl font-semibold">Pourquoi utiliser ce compteur de texte en ligne ?</h2>
+    <p class="mt-2">Ce compteur de texte vous permet de connaître instantanément le nombre de caractères, mots, lignes, et autres statistiques utiles pour la rédaction de contenus professionnels ou académiques. Que vous soyez étudiant, rédacteur web, traducteur, développeur ou journaliste, cet outil vous fait gagner du temps en vous fournissant des données essentielles en un clin d'œil.</p>
+
+    <p class="mt-4">Parfait pour optimiser :</p>
+    <ul class="list-disc list-inside">
+      <li>Les <strong>meta-descriptions</strong> pour le SEO</li>
+      <li>Les publications sur <strong>Twitter/X, LinkedIn, Instagram</strong></li>
+      <li>Les <strong>balises title</strong> de pages web</li>
+      <li>Les résumés de thèse ou de dissertation</li>
+      <li>Les messages SMS, WhatsApp ou email</li>
+    </ul>
+
+    <p class="mt-4">L'outil s'exécute entièrement dans votre navigateur, garantissant une expérience rapide et totalement privée. Aucune donnée n'est envoyée à un serveur distant. Il fonctionne aussi bien sur ordinateur que sur mobile ou tablette.</p>
+
+    <h3 class="text-lg font-semibold mt-6">Fonctionnalités clés :</h3>
+    <ul class="list-disc list-inside">
+      <li>Calcul en temps réel des caractères (avec et sans espaces)</li>
+      <li>Nombre de mots</li>
+      <li>Nombre de lignes</li>
+      <li>Longueur moyenne des mots</li>
+      <li>Mot le plus long</li>
+      <li>Interface adaptée au thème sombre ou clair automatiquement</li>
+    </ul>
+
+    <h3 class="text-lg font-semibold mt-6">Pour qui ?</h3>
+    <ul class="list-disc list-inside">
+      <li>📚 Étudiants & enseignants</li>
+      <li>✍️ Rédacteurs web & consultants SEO</li>
+      <li>👨‍💻 Développeurs et créateurs de contenu</li>
+      <li>📰 Journalistes ou auteurs</li>
+      <li>📱 Professionnels des réseaux sociaux</li>
+    </ul>
+
+    <h3 class="text-lg font-semibold mt-6">Confidentialité & performance</h3>
+    <p>L'outil est entièrement gratuit, sans inscription ni publicité. Il respecte votre vie privée en ne stockant aucune information. Aucune connexion internet n'est requise une fois la page chargée… même en mode avion.</p>
+  </section>
 </body>
 </html>
