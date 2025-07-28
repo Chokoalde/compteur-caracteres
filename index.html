@@ -6,28 +6,6 @@
   <title>Compteur de caractères en ligne - Caractères, mots, statistiques</title>
   <meta name="description" content="Comptez instantanément les caractères, mots, lignes et plus. Outil gratuit, rapide et 100% privé. Idéal pour rédacteurs, étudiants, développeurs et SEO." />
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    function updateCount() {
-      const text = document.getElementById("inputText").value;
-
-      const charWithSpaces = text.length;
-      const charWithoutSpaces = text.replace(/\s/g, "").length;
-      const words = text.trim().split(/\s+/).filter(Boolean);
-      const wordCount = words.length;
-      const lines = text.split(/\r\n|\r|\n/).length;
-
-      const totalWordLength = words.reduce((acc, word) => acc + word.length, 0);
-      const avgWordLength = wordCount > 0 ? (totalWordLength / wordCount).toFixed(2) : 0;
-      const longestWord = words.reduce((a, b) => b.length > a.length ? b : a, "");
-
-      document.getElementById("charWithSpaces").innerText = charWithSpaces;
-      document.getElementById("charWithoutSpaces").innerText = charWithoutSpaces;
-      document.getElementById("wordCount").innerText = wordCount;
-      document.getElementById("lineCount").innerText = lines;
-      document.getElementById("avgWordLength").innerText = avgWordLength;
-      document.getElementById("longestWord").innerText = longestWord || "—";
-    }
-  </script>
 </head>
 <body class="bg-gray-100 text-gray-800 flex flex-col min-h-screen p-4">
   <div class="h-screen max-w-xl w-full mx-auto flex-grow flex flex-col justify-center">
@@ -37,7 +15,11 @@
       </div>
 
       <textarea id="inputText" class="w-full h-40 p-4 border rounded-xl resize-none focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Tapez ou collez votre texte ici..." oninput="updateCount()" maxlength="33000"></textarea>
+      <button onclick="clearTextarea()" class="absolute top-2 right-2 text-gray-400 hover:text-red-500" title="Effacer le texte">
+        &times;
+      </button>
 
+      
       <div class="mt-6 space-y-2">
         <p>📌 Caractères (avec espaces) : <span id="charWithSpaces">0</span></p>
         <p>📌 Caractères (sans espaces) : <span id="charWithoutSpaces">0</span></p>
@@ -122,6 +104,37 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    function updateCount() {
+      const text = document.getElementById("inputText").value;
+
+      const charWithSpaces = text.length;
+      const charWithoutSpaces = text.replace(/\s/g, "").length;
+      const words = text.trim().split(/\s+/).filter(Boolean);
+      const wordCount = words.length;
+      const lines = text.split(/\r\n|\r|\n/).length;
+
+      const totalWordLength = words.reduce((acc, word) => acc + word.length, 0);
+      const avgWordLength = wordCount > 0 ? (totalWordLength / wordCount).toFixed(2) : 0;
+      const longestWord = words.reduce((a, b) => b.length > a.length ? b : a, "");
+
+      document.getElementById("charWithSpaces").innerText = charWithSpaces;
+      document.getElementById("charWithoutSpaces").innerText = charWithoutSpaces;
+      document.getElementById("wordCount").innerText = wordCount;
+      document.getElementById("lineCount").innerText = lines;
+      document.getElementById("avgWordLength").innerText = avgWordLength;
+      document.getElementById("longestWord").innerText = longestWord || "—";
+    }
+    
+    function clearTextarea() {
+      const textarea = document.getElementById("inputText");
+      textarea.value = "";
+      updateCount();
+    }
+
+  </script>
+
   
 </body>
 </html>
