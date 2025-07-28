@@ -157,20 +157,18 @@
       updateCount();
     }
 
-  function copyToClipboard() {
-    const textarea = document.getElementById("inputText");
-    textarea.select();
-    textarea.setSelectionRange(0, 99999);
-    document.execCommand("copy");
-    window.getSelection().removeAllRanges();
-  }
-    
-    window.onbeforeunload = function () {
-      window.scrollTo(0, 0);
+    function copyToClipboard() {
+      const textarea = document.getElementById("inputText");
+      textarea.select();
+      textarea.setSelectionRange(0, 99999);
+      document.execCommand("copy");
+      window.getSelection().removeAllRanges();
     }
-
+      
+      window.onbeforeunload = function () {
+        window.scrollTo(0, 0);
+      }
   </script>
-
   
 </body>
 </html>
