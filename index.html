@@ -135,7 +135,6 @@
       const charWithoutSpaces = text.replace(/\s/g, "").length;
       const words = text.trim().split(/\s+/).filter(Boolean);
       const wordCount = words.length;
-      const lines = text.split(/\r\n|\r|\n/).length;
 
       const totalWordLength = words.reduce((acc, word) => acc + word.length, 0);
       const avgWordLength = wordCount > 0 ? (totalWordLength / wordCount).toFixed(2) : 0;
