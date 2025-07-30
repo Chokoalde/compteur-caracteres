@@ -18,7 +18,7 @@
     Connaître les limites de caractères est devenu essentiel pour réussir sa communication sur les réseaux sociaux et optimiser son SEO. Que ce soit pour un tweet, une description YouTube ou une meta description Google, respecter ces contraintes maximise votre visibilité, votre engagement et votre référencement.
   </p>
   <p class="mt-4 leading-relaxed">
-    Pour vous aider à compter rapidement et précisément, n’hésitez pas à tester <a href="https://compteur-de-caractere.fr" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline font-semibold">notre outil gratuit et sans publicité</a>.
+    Pour vous aider à compter rapidement et précisément, n’hésitez pas à tester <a href="/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline font-semibold">notre outil gratuit et sans publicité</a>.
   </p>
   <h2 class="text-lg font-semibold mt-6">Limites de caractères sur les réseaux sociaux majeurs</h2>
   <div class="overflow-x-auto mt-2">
@@ -127,7 +127,16 @@
   </footer>
   
 <script>
-        window.onbeforeunload = function () {
+    document.addEventListener("DOMContentLoaded", function () {
+    const toggleBtn = document.querySelector('[data-collapse-toggle]');
+    const menu = document.getElementById(toggleBtn.getAttribute('data-collapse-toggle'));
+
+    toggleBtn.addEventListener('click', () => {
+      menu.classList.toggle('hidden');
+    });
+  });
+      
+  window.onbeforeunload = function () {
         window.scrollTo(0, 0);
       }    
 </script>
